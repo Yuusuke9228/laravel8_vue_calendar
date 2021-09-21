@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -13,8 +14,13 @@ class EventController extends Controller
      */
     public function index(): \Illuminate\Http\JsonResponse
     {
-        // 一緒にカレンダーを取得する様に変更
-        return response()->json(Event::with('calendar')->get());
+        $events = Event::query()
+            ->join('calendars', 'events.calendar_id', '=', 'calendars.id')
+            ->where('calendars.user_id', '=',  Auth::id())
+            ->with('calendar')
+            ->get();
+
+        return response()->json($events);
     }
 
     /**

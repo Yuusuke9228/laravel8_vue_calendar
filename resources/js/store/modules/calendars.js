@@ -3,7 +3,7 @@ import { serializeCalendar } from '../../functions/serializers';
 
 const state = {
     calendars: [],
-    calendar: null, // 追加
+    calendar: null,
 };
 
 const getters = {
@@ -21,23 +21,23 @@ const mutations = {
 
 const actions = {
     async fetchCalendars({ commit }) {
-        const response = await axios.get('/api/calendars');
+        const response = await axios.get('/calendars');
         commit('setCalendars', response.data);
     },
     async createCalendar({ commit }, calendar) {
         const response = await axios.post('/api/calendars', calendar);
         commit('appendCalendar', response.data);
     },
-    async updateCalendar({ commit }, calendar) {
+    async updateCalendar({ dispatch, commit }, calendar) {
         const response = await axios.put(`/api/calendars/${calendar.id}`, calendar);
         commit('updateCalendar', response.data);
+        dispatch('events/fetchEvents', null, { root: true });
     },
-    // 追加
-    async deleteCalendar({ commit }, id) {
+    async deleteCalendar({ dispatch, commit }, id) {
         const response = await axios.delete(`/api/calendars/${id}`);
         commit('removeCalendar', response.data);
+        dispatch('events/fetchEvents', null, { root: true });
     },
-    // ここまで
     setCalendar({ commit }, calendar) {
         commit('setCalendar', calendar);
     },

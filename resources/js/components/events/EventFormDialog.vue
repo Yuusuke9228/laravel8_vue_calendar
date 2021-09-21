@@ -25,7 +25,10 @@
             </DialogSection>
             <!--追加-->
             <DialogSection icon="mdi-calendar">
-                <CalendarSelectForm :value="calendar" @input="changeCalendar($event)" />
+                <CalendarSelectForm
+                    :value="calendar"
+                    @input="changeCalendar($event)"
+                />
             </DialogSection>
             <!--ここまで-->
             <DialogSection icon="mdi-palette">
@@ -40,17 +43,17 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import DialogSection from '../pageParts/DialogSection';
-import DateForm from '../form/DateForm';
-import TimeForm from '../form/TimeForm';
-import TextForm from '../form/TextForm';
-import ColorForm from '../form/ColorForm';
-import CheckBox from '../form/CheckBox';
-import CalendarSelectForm from '../form/CalendarSelectForm'; // 追加
+import { mapGetters, mapActions } from "vuex";
+import DialogSection from "../pageParts/DialogSection";
+import DateForm from "../form/DateForm";
+import TimeForm from "../form/TimeForm";
+import TextForm from "../form/TextForm";
+import ColorForm from "../form/ColorForm";
+import CheckBox from "../form/CheckBox";
+import CalendarSelectForm from "../form/CalendarSelectForm"; // 追加
 
 export default {
-    name: 'EventFormDialog',
+    name: "EventFormDialog",
     components: {
         DialogSection,
         DateForm,
@@ -61,18 +64,18 @@ export default {
         CalendarSelectForm, // 追加
     },
     data: () => ({
-        name: '',
+        name: "",
         startDate: null,
         startTime: null,
         endDate: null,
         endTime: null,
-        description: '',
-        color: '',
+        description: "",
+        color: "",
         allDay: false,
         calendar: null, // 追加
     }),
     computed: {
-        ...mapGetters('events', ['event']),
+        ...mapGetters("events", ["event"]),
     },
     created() {
         this.name = this.event.name;
@@ -86,7 +89,12 @@ export default {
         this.calendar = this.event.calendar; // 追加
     },
     methods: {
-        ...mapActions('events', ['setEvent', 'setEditMode', 'createEvent', 'updateEvent']),
+        ...mapActions("events", [
+            "setEvent",
+            "setEditMode",
+            "createEvent",
+            "updateEvent",
+        ]),
         closeDialog() {
             this.setEditMode(false);
             this.setEvent(null);
@@ -95,8 +103,8 @@ export default {
             const params = {
                 ...this.event,
                 name: this.name,
-                start: `${this.startDate} ${this.startTime || ''}`,
-                end: `${this.endDate} ${this.endTime || ''}`,
+                start: `${this.startDate} ${this.startTime || ""}`,
+                end: `${this.endDate} ${this.endTime || ""}`,
                 description: this.description,
                 color: this.color,
                 timed: !this.allDay,

@@ -18,48 +18,53 @@
         </v-card-title>
         <v-card-text>
             <DialogSection icon="mdi-clock-time-three-outline">
-                {{ event.startDate }} {{ event.timed ? event.startTime : '' }} ~ {{ event.endDate }} {{ event.timed ? event.endTime : '' }}
+                {{ event.startDate }} {{ event.timed ? event.startTime : "" }} ~
+                {{ event.endDate }} {{ event.timed ? event.endTime : "" }}
             </DialogSection>
         </v-card-text>
         <v-card-text>
             <DialogSection icon="mdi-card-text-outline">
-                {{ event.description || 'no description' }}
+                {{ event.description || "no description" }}
             </DialogSection>
         </v-card-text>
         <!--追加-->
         <v-card-text>
-            <DialogSection icon="mdi-calendar">{{ event.calendar.name }}</DialogSection>
+            <DialogSection icon="mdi-calendar">{{
+                event.calendar.name
+            }}</DialogSection>
         </v-card-text>
         <!--ここまで-->
     </v-card>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import DialogSection from '../pageParts/DialogSection';
+import { mapGetters, mapActions } from "vuex";
+import DialogSection from "../pageParts/DialogSection";
 
 export default {
-    name: 'EventDetailDialog',
+    name: "EventDetailDialog",
     computed: {
-        ...mapGetters('events', ['event']),
+        ...mapGetters("events", ["event"]),
     },
     components: {
         DialogSection,
     },
     methods: {
-        ...mapActions('events', ['setEvent', 'deleteEvent', 'setEditMode']),
+        ...mapActions("events", ["setEvent", "deleteEvent", "setEditMode"]),
         closeDialog() {
             this.setEvent(null);
         },
         removeEvent() {
-            const res = confirm(`「${this.event.name}」を削除してもよろしいですか？`);
-            if(res) {
+            const res = confirm(
+                `「${this.event.name}」を削除してもよろしいですか？`
+            );
+            if (res) {
                 this.deleteEvent(this.event.id);
             }
         },
         editEvent() {
             this.setEditMode(true);
         },
-    }
+    },
 };
 </script>

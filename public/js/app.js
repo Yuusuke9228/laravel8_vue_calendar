@@ -2102,33 +2102,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'CalendarFormDialog',
+  name: "CalendarFormDialog",
   components: {
     DialogSection: _pageParts_DialogSection__WEBPACK_IMPORTED_MODULE_0__["default"],
     ColorForm: _form_ColorForm__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      name: '',
+      name: "",
       color: null
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)('calendars', ['calendar'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("calendars", ["calendar"])),
   created: function created() {
     this.name = this.calendar.name;
     this.color = this.calendar.color;
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)('calendars', ['createCalendar', 'updateCalendar', 'setCalendar'])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("calendars", ["createCalendar", "updateCalendar", "setCalendar"])), {}, {
     //'updateCalendar'を追加
     close: function close() {
       this.setCalendar(null);
     },
     submit: function submit() {
-      var user_id = document.getElementById('user_id').value;
+      var user_id = document.getElementById("user_id").value;
 
       var params = _objectSpread(_objectSpread({}, this.calendar), {}, {
         name: this.name,
@@ -2217,11 +2220,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
- // 追加
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'CalendarList',
+  name: "CalendarList",
   data: function data() {
     return {
       selectedItem: null
@@ -2230,15 +2243,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     CalendarFormDialog: _CalendarFormDialog__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)('calendars', ['calendars', 'calendar'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("calendars", ["calendars", "calendar"])),
   created: function created() {
     this.fetchCalendars();
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)('calendars', ['fetchCalendars', 'deleteCalendar', 'setCalendar'])), {}, {
-    // 'deleteCalendar'追加
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("calendars", ["fetchCalendars", "updateCalendar", "deleteCalendar", "setCalendar"])), {}, {
+    // 'updateCalendar'追加
     initCalendar: function initCalendar() {
       this.setCalendar({
-        name: '',
+        name: "",
         visibility: true
       });
     },
@@ -2248,15 +2261,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     editCalendar: function editCalendar(calendar) {
       this.setCalendar(calendar);
     },
-    // 追加
     delCalendar: function delCalendar(calendar) {
       var res = confirm("\u300C".concat(calendar.name, "\u300D\u3092\u524A\u9664\u3057\u3066\u3082\u3088\u308D\u3057\u3044\u3067\u3059\u304B\uFF1F"));
 
       if (res) {
         this.deleteCalendar(calendar.id);
       }
-    } // ここまで
-
+    },
+    toggleVisibility: function toggleVisibility(calendar) {
+      this.updateCalendar(calendar);
+    }
   })
 });
 
@@ -2317,15 +2331,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'EventDetailDialog',
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)('events', ['event'])),
+  name: "EventDetailDialog",
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("events", ["event"])),
   components: {
     DialogSection: _pageParts_DialogSection__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)('events', ['setEvent', 'deleteEvent', 'setEditMode'])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("events", ["setEvent", "deleteEvent", "setEditMode"])), {}, {
     closeDialog: function closeDialog() {
       this.setEvent(null);
     },
@@ -2410,6 +2427,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2420,7 +2440,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  // 追加
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'EventFormDialog',
+  name: "EventFormDialog",
   components: {
     DialogSection: _pageParts_DialogSection__WEBPACK_IMPORTED_MODULE_0__["default"],
     DateForm: _form_DateForm__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -2433,19 +2453,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      name: '',
+      name: "",
       startDate: null,
       startTime: null,
       endDate: null,
       endTime: null,
-      description: '',
-      color: '',
+      description: "",
+      color: "",
       allDay: false,
       calendar: null // 追加
 
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapGetters)('events', ['event'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapGetters)("events", ["event"])),
   created: function created() {
     this.name = this.event.name;
     this.startDate = this.event.startDate;
@@ -2457,7 +2477,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.allDay = !this.event.timed;
     this.calendar = this.event.calendar; // 追加
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapActions)('events', ['setEvent', 'setEditMode', 'createEvent', 'updateEvent'])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapActions)("events", ["setEvent", "setEditMode", "createEvent", "updateEvent"])), {}, {
     closeDialog: function closeDialog() {
       this.setEditMode(false);
       this.setEvent(null);
@@ -2465,8 +2485,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var params = _objectSpread(_objectSpread({}, this.event), {}, {
         name: this.name,
-        start: "".concat(this.startDate, " ").concat(this.startTime || ''),
-        end: "".concat(this.endDate, " ").concat(this.endTime || ''),
+        start: "".concat(this.startDate, " ").concat(this.startTime || ""),
+        end: "".concat(this.endDate, " ").concat(this.endTime || ""),
         description: this.description,
         color: this.color,
         timed: !this.allDay,
@@ -2531,22 +2551,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'CalendarSelectForm',
-  props: ['value'],
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)('calendars', ['calendars'])), {}, {
+  name: "CalendarSelectForm",
+  props: ["value"],
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("calendars", ["calendars"])), {}, {
     calendar: {
       get: function get() {
         if (this.value === undefined || this.value === null) {
-          this.$emit('input', this.calendars[0]);
+          this.$emit("input", this.calendars[0]);
           return this.calendars[0];
         }
 
         return this.value;
       },
       set: function set(value) {
-        this.$emit('input', value);
+        this.$emit("input", value);
       }
     }
   })
@@ -2574,8 +2598,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'CheckBox',
-  props: ['value', 'label']
+  name: "CheckBox",
+  props: ["value", "label"]
 });
 
 /***/ }),
@@ -2612,9 +2636,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'ColorForm',
-  props: ['value']
+  name: "ColorForm",
+  props: ["value"]
 });
 
 /***/ }),
@@ -2646,8 +2672,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'DateForm',
-  props: ['value']
+  name: "DateForm",
+  props: ["value"]
 });
 
 /***/ }),
@@ -2675,9 +2701,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'TextForm',
-  props: ['value']
+  name: "TextForm",
+  props: ["value"]
 });
 
 /***/ }),
@@ -2707,10 +2734,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'TimeForm',
-  props: ['value'],
+  name: "TimeForm",
+  props: ["value"],
   computed: {
     times: function times() {
       return (0,_functions_datetime__WEBPACK_IMPORTED_MODULE_0__.getTimeIntervalList)();
@@ -2731,11 +2762,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _events_EventDetailDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../events/EventDetailDialog */ "./resources/js/components/events/EventDetailDialog.vue");
 /* harmony import */ var _events_EventFormDialog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../events/EventFormDialog */ "./resources/js/components/events/EventFormDialog.vue");
 /* harmony import */ var _calendars_CalendarList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../calendars/CalendarList */ "./resources/js/components/calendars/CalendarList.vue");
+/* harmony import */ var _pageParts_DayEventList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pageParts/DayEventList */ "./resources/js/components/pageParts/DayEventList.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2781,32 +2813,94 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Calendar',
+  name: "Calendar",
   data: function data() {
     return {
-      value: (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(new Date(), 'yyyy/MM/dd') // 初期値を今日の月にする
-
+      value: (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(new Date(), "yyyy/MM/dd"),
+      // 初期値を今日の月にする
+      user_id: document.getElementById("user_id").value,
+      type: "month",
+      viewSelect: {
+        value: "month",
+        text: "月表示"
+      },
+      items: [{
+        value: "month",
+        text: "月表示"
+      }, {
+        value: "week",
+        text: "週表示"
+      }, {
+        value: "day",
+        text: "日表示"
+      }]
     };
   },
   components: {
     EventDetailDialog: _events_EventDetailDialog__WEBPACK_IMPORTED_MODULE_0__["default"],
     EventFormDialog: _events_EventFormDialog__WEBPACK_IMPORTED_MODULE_1__["default"],
-    CalendarList: _calendars_CalendarList__WEBPACK_IMPORTED_MODULE_2__["default"]
+    CalendarList: _calendars_CalendarList__WEBPACK_IMPORTED_MODULE_2__["default"],
+    DayEventList: _pageParts_DayEventList__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)('events', ['events', 'event', 'isEditMode'])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("events", ["events", "event", "isEditMode", "clickedDate"])), {}, {
     title: function title() {
-      return (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(new Date(this.value), 'yyyy年 M月');
+      switch (this.type) {
+        case "month":
+          return (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(new Date(this.value), "yyyy年 M月");
+
+        case "week":
+          return this.formedDateOfThisWeek(new Date(this.value));
+
+        case "day":
+          return (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(new Date(this.value), "yyyy年 M月 d日");
+      }
     }
   }),
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)('events', ['fetchEvents', 'setEvent', 'setEditMode'])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)("events", ["fetchEvents", "setEvent", "setEditMode", "setClickedDate"])), {}, {
     setToday: function setToday() {
-      this.value = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(new Date(), 'yyyy/MM/dd');
+      this.value = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(new Date(), "yyyy/MM/dd");
     },
     showEvent: function showEvent(_ref) {
       var nativeEvent = _ref.nativeEvent,
@@ -2817,19 +2911,110 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     closeDialog: function closeDialog() {
       this.setEvent(null);
       this.setEditMode(false);
+      this.setClickedDate(null);
     },
     initEvent: function initEvent(_ref2) {
       var date = _ref2.date;
-      date = date.replace(/-/g, '/');
-      var start = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(new Date(date), 'yyyy/MM/dd 00:00:00');
-      var end = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(new Date(date), 'yyyy/MM/dd 01:00:00');
+
+      if (this.clickedDate !== null) {
+        return;
+      }
+
+      date = date.replace(/-/g, "/");
+      var start = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(new Date(date), "yyyy/MM/dd 00:00:00");
+      var end = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(new Date(date), "yyyy/MM/dd 01:00:00");
       this.setEvent({
-        name: '',
+        name: "",
         start: start,
         end: end,
         timed: true
       });
       this.setEditMode(true);
+    },
+    showDayEvents: function showDayEvents(_ref3) {
+      var date = _ref3.date;
+      date = date.replace(/-/g, "/");
+      this.setClickedDate(date);
+    },
+    changeView: function changeView(text, event) {
+      this.type = event.value;
+    },
+    formedDateOfThisWeek: function formedDateOfThisWeek(today) {
+      var this_year = today.getFullYear();
+      var this_month = today.getMonth();
+      var date = today.getDate();
+      var day_num = today.getDay();
+      var this_sunday = date - day_num;
+      var this_saturday = this_sunday + 6;
+      var day = String("日月火水木金土");
+      var start_date = new Date(this_year, this_month, this_sunday);
+      start_date = start_date.getFullYear() + "年" + (start_date.getMonth() + 1) + "月" + start_date.getDate() + "日" + " (" + day.charAt(start_date.getDay()) + ")";
+      var end_date = new Date(this_year, this_month, this_saturday);
+      end_date = end_date.getFullYear() + "年" + (end_date.getMonth() + 1) + "月" + end_date.getDate() + "日" + " (" + day.charAt(end_date.getDay()) + ")";
+      return start_date + " ～ " + end_date;
+    }
+  })
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pageParts/DayEventList.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pageParts/DayEventList.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _functions_datetime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../functions/datetime */ "./resources/js/functions/datetime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "DayEventList",
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("events", ["dayEvents", "clickedDate"])),
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("events", ["setClickedDate"])), {}, {
+    formatDateToJa: _functions_datetime__WEBPACK_IMPORTED_MODULE_0__.formatDateToJa,
+    closeDialog: function closeDialog() {
+      this.setClickedDate(null);
     }
   })
 });
@@ -2859,8 +3044,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'DialogSection',
-  props: ['icon', 'color']
+  name: "DialogSection",
+  props: ["icon", "color"]
 });
 
 /***/ }),
@@ -2889,7 +3074,7 @@ __webpack_require__.r(__webpack_exports__);
     Calendar: _pageParts_Calendar__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   mounted: function mounted() {
-    console.log('HomeComponent mounted.');
+    console.log("HomeComponent mounted.");
   }
 });
 
@@ -2984,8 +3169,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getTimeIntervalList": () => (/* binding */ getTimeIntervalList)
+/* harmony export */   "getTimeIntervalList": () => (/* binding */ getTimeIntervalList),
+/* harmony export */   "isDateWithinInterval": () => (/* binding */ isDateWithinInterval),
+/* harmony export */   "formatDateToJa": () => (/* binding */ formatDateToJa),
+/* harmony export */   "compareDates": () => (/* binding */ compareDates)
 /* harmony export */ });
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/isWithinInterval/index.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
+/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! date-fns/locale */ "./node_modules/date-fns/esm/locale/ja/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2998,6 +3189,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+ // 追加
+
+ // 追加
+
+/**
+ * 時刻選択用のオブジェクトを生成
+ *
+ * @returns {FlatArray<string[][], 1>[]}
+ */
+
 var getTimeIntervalList = function getTimeIntervalList() {
   var hours = _toConsumableArray(Array(24)).map(function (_, i) {
     return ('0' + i).slice(-2);
@@ -3009,7 +3210,47 @@ var getTimeIntervalList = function getTimeIntervalList() {
       return hour + ':' + minute;
     });
   }).flat();
+}; // 追加
+
+/**
+ * startDateとendDateの間にdateが含まれるかどうか
+ *
+ * @param date
+ * @param startDate
+ * @param endDate
+ */
+
+var isDateWithinInterval = function isDateWithinInterval(date, startDate, endDate) {
+  return (0,date_fns__WEBPACK_IMPORTED_MODULE_0__["default"])(new Date(date), {
+    start: new Date(startDate),
+    end: new Date(endDate)
+  });
 };
+/**
+ * 日付を日本語表記にする
+ *
+ * @param date
+ * @returns {string}
+ */
+
+var formatDateToJa = function formatDateToJa(date) {
+  return (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(new Date(date), 'M月d日(E)', {
+    locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_2__["default"]
+  });
+};
+/**
+ * 日付の比較を行う
+ *
+ * @param a
+ * @param b
+ * @returns {number}
+ */
+
+var compareDates = function compareDates(a, b) {
+  if (a.start < b.start) return -1;
+  if (a.start > b.start) return 1;
+  return 0;
+}; // ここまで
 
 /***/ }),
 
@@ -3025,28 +3266,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "serializeEvent": () => (/* binding */ serializeEvent),
 /* harmony export */   "serializeCalendar": () => (/* binding */ serializeCalendar)
 /* harmony export */ });
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/set/index.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+ // setを追加
 
 var serializeEvent = function serializeEvent(event) {
   if (event === null) {
     return null;
-  }
+  } // 編集
+
 
   var start = new Date(event.start);
   var end = new Date(event.end);
+
+  if (!event.timed) {
+    start = (0,date_fns__WEBPACK_IMPORTED_MODULE_0__["default"])(start, {
+      hours: 0,
+      minutes: 0,
+      seconds: 0
+    });
+    end = (0,date_fns__WEBPACK_IMPORTED_MODULE_0__["default"])(end, {
+      hours: 23,
+      minutes: 59,
+      seconds: 59
+    });
+  } // ここまで
+
+
   return _objectSpread(_objectSpread({}, event), {}, {
     start: start,
     end: end,
-    startDate: (0,date_fns__WEBPACK_IMPORTED_MODULE_0__["default"])(start, 'yyyy/MM/dd'),
-    startTime: (0,date_fns__WEBPACK_IMPORTED_MODULE_0__["default"])(start, 'HH:mm'),
-    endDate: (0,date_fns__WEBPACK_IMPORTED_MODULE_0__["default"])(end, 'yyyy/MM/dd'),
-    endTime: (0,date_fns__WEBPACK_IMPORTED_MODULE_0__["default"])(end, 'HH:mm'),
+    startDate: (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(start, 'yyyy/MM/dd'),
+    startTime: (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(start, 'HH:mm'),
+    endDate: (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(end, 'yyyy/MM/dd'),
+    endTime: (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(end, 'HH:mm'),
     color: event.color || '#216a1a'
   });
 }; // カレンダー用の関数を追加
@@ -3132,8 +3391,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var state = {
   calendars: [],
-  calendar: null // 追加
-
+  calendar: null
 };
 var getters = {
   calendars: function calendars(state) {
@@ -3178,7 +3436,7 @@ var actions = {
             case 0:
               commit = _ref.commit;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/calendars');
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/calendars');
 
             case 3:
               response = _context.sent;
@@ -3217,20 +3475,23 @@ var actions = {
   },
   updateCalendar: function updateCalendar(_ref3, calendar) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var commit, response;
+      var dispatch, commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              commit = _ref3.commit;
+              dispatch = _ref3.dispatch, commit = _ref3.commit;
               _context3.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/calendars/".concat(calendar.id), calendar);
 
             case 3:
               response = _context3.sent;
               commit('updateCalendar', response.data);
+              dispatch('events/fetchEvents', null, {
+                root: true
+              });
 
-            case 5:
+            case 6:
             case "end":
               return _context3.stop();
           }
@@ -3238,23 +3499,25 @@ var actions = {
       }, _callee3);
     }))();
   },
-  // 追加
   deleteCalendar: function deleteCalendar(_ref4, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-      var commit, response;
+      var dispatch, commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              commit = _ref4.commit;
+              dispatch = _ref4.dispatch, commit = _ref4.commit;
               _context4.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/api/calendars/".concat(id));
 
             case 3:
               response = _context4.sent;
               commit('removeCalendar', response.data);
+              dispatch('events/fetchEvents', null, {
+                root: true
+              });
 
-            case 5:
+            case 6:
             case "end":
               return _context4.stop();
           }
@@ -3262,7 +3525,6 @@ var actions = {
       }, _callee4);
     }))();
   },
-  // ここまで
   setCalendar: function setCalendar(_ref5, calendar) {
     var commit = _ref5.commit;
     commit('setCalendar', calendar);
@@ -3293,7 +3555,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _functions_serializers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../functions/serializers */ "./resources/js/functions/serializers.js");
+/* harmony import */ var _functions_datetime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../functions/datetime */ "./resources/js/functions/datetime.js");
+/* harmony import */ var _functions_serializers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../functions/serializers */ "./resources/js/functions/serializers.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3314,22 +3577,36 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
+
 var state = {
   events: [],
   event: null,
-  isEditMode: false
+  isEditMode: false,
+  clickedDate: null
 };
 var getters = {
   events: function events(state) {
-    return state.events.map(function (event) {
-      return (0,_functions_serializers__WEBPACK_IMPORTED_MODULE_2__.serializeEvent)(event);
+    return state.events.filter(function (event) {
+      return event.calendar.visibility;
+    }).map(function (event) {
+      return (0,_functions_serializers__WEBPACK_IMPORTED_MODULE_3__.serializeEvent)(event);
     });
   },
   event: function event(state) {
-    return (0,_functions_serializers__WEBPACK_IMPORTED_MODULE_2__.serializeEvent)(state.event);
+    return (0,_functions_serializers__WEBPACK_IMPORTED_MODULE_3__.serializeEvent)(state.event);
+  },
+  dayEvents: function dayEvents(state) {
+    return state.events.map(function (event) {
+      return (0,_functions_serializers__WEBPACK_IMPORTED_MODULE_3__.serializeEvent)(event);
+    }).filter(function (event) {
+      return (0,_functions_datetime__WEBPACK_IMPORTED_MODULE_2__.isDateWithinInterval)(state.clickedDate, event.startDate, event.endDate);
+    }).sort(_functions_datetime__WEBPACK_IMPORTED_MODULE_2__.compareDates);
   },
   isEditMode: function isEditMode(state) {
     return state.isEditMode;
+  },
+  clickedDate: function clickedDate(state) {
+    return state.clickedDate;
   }
 };
 var mutations = {
@@ -3350,15 +3627,16 @@ var mutations = {
   resetEvent: function resetEvent(state) {
     return state.event = null;
   },
-  // 追加
   updateEvent: function updateEvent(state, event) {
     return state.events = state.events.map(function (e) {
       return e.id === event.id ? event : e;
     });
   },
-  // ここまで
   setEditMode: function setEditMode(state, bool) {
     return state.isEditMode = bool;
+  },
+  setClickedDate: function setClickedDate(state, date) {
+    return state.clickedDate = date;
   }
 };
 var actions = {
@@ -3371,7 +3649,7 @@ var actions = {
             case 0:
               commit = _ref.commit;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/events');
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/events');
 
             case 3:
               response = _context.sent;
@@ -3432,7 +3710,6 @@ var actions = {
       }, _callee3);
     }))();
   },
-  // メソッドを追加
   updateEvent: function updateEvent(_ref4, event) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
       var commit, response;
@@ -3456,7 +3733,6 @@ var actions = {
       }, _callee4);
     }))();
   },
-  // ここまで
   setEvent: function setEvent(_ref5, event) {
     var commit = _ref5.commit;
     commit('setEvent', event);
@@ -3464,6 +3740,10 @@ var actions = {
   setEditMode: function setEditMode(_ref6, bool) {
     var commit = _ref6.commit;
     commit('setEditMode', bool);
+  },
+  setClickedDate: function setClickedDate(_ref7, date) {
+    var commit = _ref7.commit;
+    commit('setClickedDate', date);
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -10091,6 +10371,56 @@ function cleanEscapedString(input) {
 
 /***/ }),
 
+/***/ "./node_modules/date-fns/esm/getDaysInMonth/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/date-fns/esm/getDaysInMonth/index.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ getDaysInMonth)
+/* harmony export */ });
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../toDate/index.js */ "./node_modules/date-fns/esm/toDate/index.js");
+/* harmony import */ var _lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_lib/requiredArgs/index.js */ "./node_modules/date-fns/esm/_lib/requiredArgs/index.js");
+
+
+/**
+ * @name getDaysInMonth
+ * @category Month Helpers
+ * @summary Get the number of days in a month of the given date.
+ *
+ * @description
+ * Get the number of days in a month of the given date.
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * @param {Date|Number} date - the given date
+ * @returns {Number} the number of days in a month
+ * @throws {TypeError} 1 argument required
+ *
+ * @example
+ * // How many days are in February 2000?
+ * const result = getDaysInMonth(new Date(2000, 1))
+ * //=> 29
+ */
+
+function getDaysInMonth(dirtyDate) {
+  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])(1, arguments);
+  var date = (0,_toDate_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])(dirtyDate);
+  var year = date.getFullYear();
+  var monthIndex = date.getMonth();
+  var lastDayOfMonth = new Date(0);
+  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
+  lastDayOfMonth.setHours(0, 0, 0, 0);
+  return lastDayOfMonth.getDate();
+}
+
+/***/ }),
+
 /***/ "./node_modules/date-fns/esm/isDate/index.js":
 /*!***************************************************!*\
   !*** ./node_modules/date-fns/esm/isDate/index.js ***!
@@ -10232,6 +10562,110 @@ function isValid(dirtyDate) {
 
   var date = (0,_toDate_index_js__WEBPACK_IMPORTED_MODULE_2__["default"])(dirtyDate);
   return !isNaN(Number(date));
+}
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/esm/isWithinInterval/index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/date-fns/esm/isWithinInterval/index.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isWithinInterval)
+/* harmony export */ });
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../toDate/index.js */ "./node_modules/date-fns/esm/toDate/index.js");
+/* harmony import */ var _lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_lib/requiredArgs/index.js */ "./node_modules/date-fns/esm/_lib/requiredArgs/index.js");
+
+
+
+/**
+ * @name isWithinInterval
+ * @category Interval Helpers
+ * @summary Is the given date within the interval?
+ *
+ * @description
+ * Is the given date within the interval? (Including start and end.)
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * - The function was renamed from `isWithinRange` to `isWithinInterval`.
+ *   This change was made to mirror the use of the word "interval" in standard ISO 8601:2004 terminology:
+ *
+ *   ```
+ *   2.1.3
+ *   time interval
+ *   part of the time axis limited by two instants
+ *   ```
+ *
+ *   Also, this function now accepts an object with `start` and `end` properties
+ *   instead of two arguments as an interval.
+ *   This function now throws `RangeError` if the start of the interval is after its end
+ *   or if any date in the interval is `Invalid Date`.
+ *
+ *   ```javascript
+ *   // Before v2.0.0
+ *
+ *   isWithinRange(
+ *     new Date(2014, 0, 3),
+ *     new Date(2014, 0, 1), new Date(2014, 0, 7)
+ *   )
+ *
+ *   // v2.0.0 onward
+ *
+ *   isWithinInterval(
+ *     new Date(2014, 0, 3),
+ *     { start: new Date(2014, 0, 1), end: new Date(2014, 0, 7) }
+ *   )
+ *   ```
+ *
+ * @param {Date|Number} date - the date to check
+ * @param {Interval} interval - the interval to check
+ * @returns {Boolean} the date is within the interval
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} The start of an interval cannot be after its end
+ * @throws {RangeError} Date in interval cannot be `Invalid Date`
+ *
+ * @example
+ * // For the date within the interval:
+ * isWithinInterval(new Date(2014, 0, 3), {
+ *   start: new Date(2014, 0, 1),
+ *   end: new Date(2014, 0, 7)
+ * })
+ * //=> true
+ *
+ * @example
+ * // For the date outside of the interval:
+ * isWithinInterval(new Date(2014, 0, 10), {
+ *   start: new Date(2014, 0, 1),
+ *   end: new Date(2014, 0, 7)
+ * })
+ * //=> false
+ *
+ * @example
+ * // For date equal to interval start:
+ * isWithinInterval(date, { start, end: date }) // => true
+ *
+ * @example
+ * // For date equal to interval end:
+ * isWithinInterval(date, { start: date, end }) // => true
+ */
+function isWithinInterval(dirtyDate, interval) {
+  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])(2, arguments);
+  var time = (0,_toDate_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])(dirtyDate).getTime();
+  var startTime = (0,_toDate_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])(interval.start).getTime();
+  var endTime = (0,_toDate_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])(interval.end).getTime(); // Throw an exception if start date is after end date or if any date is `Invalid Date`
+
+  if (!(startTime <= endTime)) {
+    throw new RangeError('Invalid interval');
+  }
+
+  return time >= startTime && time <= endTime;
 }
 
 /***/ }),
@@ -10889,6 +11323,694 @@ var locale = {
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (locale);
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/esm/locale/ja/_lib/formatDistance/index.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/date-fns/esm/locale/ja/_lib/formatDistance/index.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ formatDistance)
+/* harmony export */ });
+var formatDistanceLocale = {
+  lessThanXSeconds: {
+    one: '1秒未満',
+    other: '{{count}}秒未満',
+    oneWithSuffix: '約1秒',
+    otherWithSuffix: '約{{count}}秒'
+  },
+  xSeconds: {
+    one: '1秒',
+    other: '{{count}}秒'
+  },
+  halfAMinute: '30秒',
+  lessThanXMinutes: {
+    one: '1分未満',
+    other: '{{count}}分未満',
+    oneWithSuffix: '約1分',
+    otherWithSuffix: '約{{count}}分'
+  },
+  xMinutes: {
+    one: '1分',
+    other: '{{count}}分'
+  },
+  aboutXHours: {
+    one: '約1時間',
+    other: '約{{count}}時間'
+  },
+  xHours: {
+    one: '1時間',
+    other: '{{count}}時間'
+  },
+  xDays: {
+    one: '1日',
+    other: '{{count}}日'
+  },
+  aboutXWeeks: {
+    one: '約1週間',
+    other: '約{{count}}週間'
+  },
+  xWeeks: {
+    one: '1週間',
+    other: '{{count}}週間'
+  },
+  aboutXMonths: {
+    one: '約1か月',
+    other: '約{{count}}か月'
+  },
+  xMonths: {
+    one: '1か月',
+    other: '{{count}}か月'
+  },
+  aboutXYears: {
+    one: '約1年',
+    other: '約{{count}}年'
+  },
+  xYears: {
+    one: '1年',
+    other: '{{count}}年'
+  },
+  overXYears: {
+    one: '1年以上',
+    other: '{{count}}年以上'
+  },
+  almostXYears: {
+    one: '1年近く',
+    other: '{{count}}年近く'
+  }
+};
+function formatDistance(token, count, options) {
+  options = options || {};
+  var result;
+
+  if (typeof formatDistanceLocale[token] === 'string') {
+    result = formatDistanceLocale[token];
+  } else if (count === 1) {
+    if (options.addSuffix && formatDistanceLocale[token].oneWithSuffix) {
+      result = formatDistanceLocale[token].oneWithSuffix;
+    } else {
+      result = formatDistanceLocale[token].one;
+    }
+  } else {
+    if (options.addSuffix && formatDistanceLocale[token].otherWithSuffix) {
+      result = formatDistanceLocale[token].otherWithSuffix.replace('{{count}}', count);
+    } else {
+      result = formatDistanceLocale[token].other.replace('{{count}}', count);
+    }
+  }
+
+  if (options.addSuffix) {
+    if (options.comparison > 0) {
+      return result + '後';
+    } else {
+      return result + '前';
+    }
+  }
+
+  return result;
+}
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/esm/locale/ja/_lib/formatLong/index.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/date-fns/esm/locale/ja/_lib/formatLong/index.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _lib_buildFormatLongFn_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../_lib/buildFormatLongFn/index.js */ "./node_modules/date-fns/esm/locale/_lib/buildFormatLongFn/index.js");
+
+var dateFormats = {
+  full: 'y年M月d日EEEE',
+  long: 'y年M月d日',
+  medium: 'y/MM/dd',
+  short: 'y/MM/dd'
+};
+var timeFormats = {
+  full: 'H時mm分ss秒 zzzz',
+  long: 'H:mm:ss z',
+  medium: 'H:mm:ss',
+  short: 'H:mm'
+};
+var dateTimeFormats = {
+  full: '{{date}} {{time}}',
+  long: '{{date}} {{time}}',
+  medium: '{{date}} {{time}}',
+  short: '{{date}} {{time}}'
+};
+var formatLong = {
+  date: (0,_lib_buildFormatLongFn_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    formats: dateFormats,
+    defaultWidth: 'full'
+  }),
+  time: (0,_lib_buildFormatLongFn_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    formats: timeFormats,
+    defaultWidth: 'full'
+  }),
+  dateTime: (0,_lib_buildFormatLongFn_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    formats: dateTimeFormats,
+    defaultWidth: 'full'
+  })
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (formatLong);
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/esm/locale/ja/_lib/formatRelative/index.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/date-fns/esm/locale/ja/_lib/formatRelative/index.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ formatRelative)
+/* harmony export */ });
+var formatRelativeLocale = {
+  lastWeek: '先週のeeeeのp',
+  yesterday: '昨日のp',
+  today: '今日のp',
+  tomorrow: '明日のp',
+  nextWeek: '翌週のeeeeのp',
+  other: 'P'
+};
+function formatRelative(token, _date, _baseDate, _options) {
+  return formatRelativeLocale[token];
+}
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/esm/locale/ja/_lib/localize/index.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/date-fns/esm/locale/ja/_lib/localize/index.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _lib_buildLocalizeFn_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../_lib/buildLocalizeFn/index.js */ "./node_modules/date-fns/esm/locale/_lib/buildLocalizeFn/index.js");
+
+var eraValues = {
+  narrow: ['BC', 'AC'],
+  abbreviated: ['紀元前', '西暦'],
+  wide: ['紀元前', '西暦']
+};
+var quarterValues = {
+  narrow: ['1', '2', '3', '4'],
+  abbreviated: ['Q1', 'Q2', 'Q3', 'Q4'],
+  wide: ['第1四半期', '第2四半期', '第3四半期', '第4四半期']
+};
+var monthValues = {
+  narrow: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+  abbreviated: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+  wide: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+};
+var dayValues = {
+  narrow: ['日', '月', '火', '水', '木', '金', '土'],
+  short: ['日', '月', '火', '水', '木', '金', '土'],
+  abbreviated: ['日', '月', '火', '水', '木', '金', '土'],
+  wide: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日']
+};
+var dayPeriodValues = {
+  narrow: {
+    am: '午前',
+    pm: '午後',
+    midnight: '深夜',
+    noon: '正午',
+    morning: '朝',
+    afternoon: '午後',
+    evening: '夜',
+    night: '深夜'
+  },
+  abbreviated: {
+    am: '午前',
+    pm: '午後',
+    midnight: '深夜',
+    noon: '正午',
+    morning: '朝',
+    afternoon: '午後',
+    evening: '夜',
+    night: '深夜'
+  },
+  wide: {
+    am: '午前',
+    pm: '午後',
+    midnight: '深夜',
+    noon: '正午',
+    morning: '朝',
+    afternoon: '午後',
+    evening: '夜',
+    night: '深夜'
+  }
+};
+var formattingDayPeriodValues = {
+  narrow: {
+    am: '午前',
+    pm: '午後',
+    midnight: '深夜',
+    noon: '正午',
+    morning: '朝',
+    afternoon: '午後',
+    evening: '夜',
+    night: '深夜'
+  },
+  abbreviated: {
+    am: '午前',
+    pm: '午後',
+    midnight: '深夜',
+    noon: '正午',
+    morning: '朝',
+    afternoon: '午後',
+    evening: '夜',
+    night: '深夜'
+  },
+  wide: {
+    am: '午前',
+    pm: '午後',
+    midnight: '深夜',
+    noon: '正午',
+    morning: '朝',
+    afternoon: '午後',
+    evening: '夜',
+    night: '深夜'
+  }
+};
+
+function ordinalNumber(dirtyNumber, dirtyOptions) {
+  var number = Number(dirtyNumber); // If ordinal numbers depend on context, for example,
+  // if they are different for different grammatical genders,
+  // use `options.unit`:
+  //
+  //   var options = dirtyOptions || {}
+  //   var unit = String(options.unit)
+  //
+  // where `unit` can be 'year', 'quarter', 'month', 'week', 'date', 'dayOfYear',
+  // 'day', 'hour', 'minute', 'second'
+
+  var options = dirtyOptions || {};
+  var unit = String(options.unit);
+
+  switch (unit) {
+    case 'year':
+      return "".concat(number, "\u5E74");
+
+    case 'quarter':
+      return "\u7B2C".concat(number, "\u56DB\u534A\u671F");
+
+    case 'month':
+      return "".concat(number, "\u6708");
+
+    case 'week':
+      return "\u7B2C".concat(number, "\u9031");
+
+    case 'date':
+      return "".concat(number, "\u65E5");
+
+    case 'hour':
+      return "".concat(number, "\u6642");
+
+    case 'minute':
+      return "".concat(number, "\u5206");
+
+    case 'second':
+      return "".concat(number, "\u79D2");
+
+    default:
+      return "".concat(number);
+  }
+}
+
+var localize = {
+  ordinalNumber: ordinalNumber,
+  era: (0,_lib_buildLocalizeFn_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    values: eraValues,
+    defaultWidth: 'wide'
+  }),
+  quarter: (0,_lib_buildLocalizeFn_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    values: quarterValues,
+    defaultWidth: 'wide',
+    argumentCallback: function (quarter) {
+      return Number(quarter) - 1;
+    }
+  }),
+  month: (0,_lib_buildLocalizeFn_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    values: monthValues,
+    defaultWidth: 'wide'
+  }),
+  day: (0,_lib_buildLocalizeFn_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    values: dayValues,
+    defaultWidth: 'wide'
+  }),
+  dayPeriod: (0,_lib_buildLocalizeFn_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    values: dayPeriodValues,
+    defaultWidth: 'wide',
+    formattingValues: formattingDayPeriodValues,
+    defaultFormattingWidth: 'wide'
+  })
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (localize);
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/esm/locale/ja/_lib/match/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/date-fns/esm/locale/ja/_lib/match/index.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _lib_buildMatchPatternFn_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../_lib/buildMatchPatternFn/index.js */ "./node_modules/date-fns/esm/locale/_lib/buildMatchPatternFn/index.js");
+/* harmony import */ var _lib_buildMatchFn_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../_lib/buildMatchFn/index.js */ "./node_modules/date-fns/esm/locale/_lib/buildMatchFn/index.js");
+
+
+var matchOrdinalNumberPattern = /^第?\d+(年|四半期|月|週|日|時|分|秒)?/i;
+var parseOrdinalNumberPattern = /\d+/i;
+var matchEraPatterns = {
+  narrow: /^(B\.?C\.?|A\.?D\.?)/i,
+  abbreviated: /^(紀元[前後]|西暦)/i,
+  wide: /^(紀元[前後]|西暦)/i
+};
+var parseEraPatterns = {
+  narrow: [/^B/i, /^A/i],
+  any: [/^(紀元前)/i, /^(西暦|紀元後)/i]
+};
+var matchQuarterPatterns = {
+  narrow: /^[1234]/i,
+  abbreviated: /^Q[1234]/i,
+  wide: /^第[1234一二三四１２３４]四半期/i
+};
+var parseQuarterPatterns = {
+  any: [/(1|一|１)/i, /(2|二|２)/i, /(3|三|３)/i, /(4|四|４)/i]
+};
+var matchMonthPatterns = {
+  narrow: /^([123456789]|1[012])/,
+  abbreviated: /^([123456789]|1[012])月/i,
+  wide: /^([123456789]|1[012])月/i
+};
+var parseMonthPatterns = {
+  any: [/^1\D/, /^2/, /^3/, /^4/, /^5/, /^6/, /^7/, /^8/, /^9/, /^10/, /^11/, /^12/]
+};
+var matchDayPatterns = {
+  narrow: /^[日月火水木金土]/,
+  short: /^[日月火水木金土]/,
+  abbreviated: /^[日月火水木金土]/,
+  wide: /^[日月火水木金土]曜日/
+};
+var parseDayPatterns = {
+  any: [/^日/, /^月/, /^火/, /^水/, /^木/, /^金/, /^土/]
+};
+var matchDayPeriodPatterns = {
+  any: /^(AM|PM|午前|午後|正午|深夜|真夜中|夜|朝)/i
+};
+var parseDayPeriodPatterns = {
+  any: {
+    am: /^(A|午前)/i,
+    pm: /^(P|午後)/i,
+    midnight: /^深夜|真夜中/i,
+    noon: /^正午/i,
+    morning: /^朝/i,
+    afternoon: /^午後/i,
+    evening: /^夜/i,
+    night: /^深夜/i
+  }
+};
+var match = {
+  ordinalNumber: (0,_lib_buildMatchPatternFn_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    matchPattern: matchOrdinalNumberPattern,
+    parsePattern: parseOrdinalNumberPattern,
+    valueCallback: function (value) {
+      return parseInt(value, 10);
+    }
+  }),
+  era: (0,_lib_buildMatchFn_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    matchPatterns: matchEraPatterns,
+    defaultMatchWidth: 'wide',
+    parsePatterns: parseEraPatterns,
+    defaultParseWidth: 'any'
+  }),
+  quarter: (0,_lib_buildMatchFn_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    matchPatterns: matchQuarterPatterns,
+    defaultMatchWidth: 'wide',
+    parsePatterns: parseQuarterPatterns,
+    defaultParseWidth: 'any',
+    valueCallback: function (index) {
+      return index + 1;
+    }
+  }),
+  month: (0,_lib_buildMatchFn_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    matchPatterns: matchMonthPatterns,
+    defaultMatchWidth: 'wide',
+    parsePatterns: parseMonthPatterns,
+    defaultParseWidth: 'any'
+  }),
+  day: (0,_lib_buildMatchFn_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    matchPatterns: matchDayPatterns,
+    defaultMatchWidth: 'wide',
+    parsePatterns: parseDayPatterns,
+    defaultParseWidth: 'any'
+  }),
+  dayPeriod: (0,_lib_buildMatchFn_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    matchPatterns: matchDayPeriodPatterns,
+    defaultMatchWidth: 'any',
+    parsePatterns: parseDayPeriodPatterns,
+    defaultParseWidth: 'any'
+  })
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (match);
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/esm/locale/ja/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/date-fns/esm/locale/ja/index.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _lib_formatDistance_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_lib/formatDistance/index.js */ "./node_modules/date-fns/esm/locale/ja/_lib/formatDistance/index.js");
+/* harmony import */ var _lib_formatLong_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_lib/formatLong/index.js */ "./node_modules/date-fns/esm/locale/ja/_lib/formatLong/index.js");
+/* harmony import */ var _lib_formatRelative_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_lib/formatRelative/index.js */ "./node_modules/date-fns/esm/locale/ja/_lib/formatRelative/index.js");
+/* harmony import */ var _lib_localize_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_lib/localize/index.js */ "./node_modules/date-fns/esm/locale/ja/_lib/localize/index.js");
+/* harmony import */ var _lib_match_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_lib/match/index.js */ "./node_modules/date-fns/esm/locale/ja/_lib/match/index.js");
+
+
+
+
+
+/**
+ * @type {Locale}
+ * @category Locales
+ * @summary Japanese locale.
+ * @language Japanese
+ * @iso-639-2 jpn
+ * @author Thomas Eilmsteiner [@DeMuu]{@link https://github.com/DeMuu}
+ * @author Yamagishi Kazutoshi [@ykzts]{@link https://github.com/ykzts}
+ * @author Luca Ban [@mesqueeb]{@link https://github.com/mesqueeb}
+ * @author Terrence Lam [@skyuplam]{@link https://github.com/skyuplam}
+ * @author Taiki IKeda [@so99ynoodles]{@link https://github.com/so99ynoodles}
+ */
+
+var locale = {
+  code: 'ja',
+  formatDistance: _lib_formatDistance_index_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+  formatLong: _lib_formatLong_index_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  formatRelative: _lib_formatRelative_index_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+  localize: _lib_localize_index_js__WEBPACK_IMPORTED_MODULE_3__["default"],
+  match: _lib_match_index_js__WEBPACK_IMPORTED_MODULE_4__["default"],
+  options: {
+    weekStartsOn: 0
+    /* Sunday */
+    ,
+    firstWeekContainsDate: 1
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (locale);
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/esm/set/index.js":
+/*!************************************************!*\
+  !*** ./node_modules/date-fns/esm/set/index.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ set)
+/* harmony export */ });
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../toDate/index.js */ "./node_modules/date-fns/esm/toDate/index.js");
+/* harmony import */ var _setMonth_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../setMonth/index.js */ "./node_modules/date-fns/esm/setMonth/index.js");
+/* harmony import */ var _lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_lib/toInteger/index.js */ "./node_modules/date-fns/esm/_lib/toInteger/index.js");
+/* harmony import */ var _lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_lib/requiredArgs/index.js */ "./node_modules/date-fns/esm/_lib/requiredArgs/index.js");
+
+
+
+
+
+/**
+ * @name set
+ * @category Common Helpers
+ * @summary Set date values to a given date.
+ *
+ * @description
+ * Set date values to a given date.
+ *
+ * Sets time values to date from object `values`.
+ * A value is not set if it is undefined or null or doesn't exist in `values`.
+ *
+ * Note about bundle size: `set` does not internally use `setX` functions from date-fns but instead opts
+ * to use native `Date#setX` methods. If you use this function, you may not want to include the
+ * other `setX` functions that date-fns provides if you are concerned about the bundle size.
+ *
+ * @param {Date|Number} date - the date to be changed
+ * @param {Object} values - an object with options
+ * @param {Number} [values.year] - the number of years to be set
+ * @param {Number} [values.month] - the number of months to be set
+ * @param {Number} [values.date] - the number of days to be set
+ * @param {Number} [values.hours] - the number of hours to be set
+ * @param {Number} [values.minutes] - the number of minutes to be set
+ * @param {Number} [values.seconds] - the number of seconds to be set
+ * @param {Number} [values.milliseconds] - the number of milliseconds to be set
+ * @returns {Date} the new date with options set
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `values` must be an object
+ *
+ * @example
+ * // Transform 1 September 2014 into 20 October 2015 in a single line:
+ * var result = set(new Date(2014, 8, 20), { year: 2015, month: 9, date: 20 })
+ * //=> Tue Oct 20 2015 00:00:00
+ *
+ * @example
+ * // Set 12 PM to 1 September 2014 01:23:45 to 1 September 2014 12:00:00:
+ * var result = set(new Date(2014, 8, 1, 1, 23, 45), { hours: 12 })
+ * //=> Mon Sep 01 2014 12:23:45
+ */
+function set(dirtyDate, values) {
+  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])(2, arguments);
+
+  if (typeof values !== 'object' || values === null) {
+    throw new RangeError('values parameter must be an object');
+  }
+
+  var date = (0,_toDate_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])(dirtyDate); // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
+
+  if (isNaN(date.getTime())) {
+    return new Date(NaN);
+  }
+
+  if (values.year != null) {
+    date.setFullYear(values.year);
+  }
+
+  if (values.month != null) {
+    date = (0,_setMonth_index_js__WEBPACK_IMPORTED_MODULE_2__["default"])(date, values.month);
+  }
+
+  if (values.date != null) {
+    date.setDate((0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])(values.date));
+  }
+
+  if (values.hours != null) {
+    date.setHours((0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])(values.hours));
+  }
+
+  if (values.minutes != null) {
+    date.setMinutes((0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])(values.minutes));
+  }
+
+  if (values.seconds != null) {
+    date.setSeconds((0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])(values.seconds));
+  }
+
+  if (values.milliseconds != null) {
+    date.setMilliseconds((0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])(values.milliseconds));
+  }
+
+  return date;
+}
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/esm/setMonth/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/date-fns/esm/setMonth/index.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ setMonth)
+/* harmony export */ });
+/* harmony import */ var _lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_lib/toInteger/index.js */ "./node_modules/date-fns/esm/_lib/toInteger/index.js");
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../toDate/index.js */ "./node_modules/date-fns/esm/toDate/index.js");
+/* harmony import */ var _getDaysInMonth_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../getDaysInMonth/index.js */ "./node_modules/date-fns/esm/getDaysInMonth/index.js");
+/* harmony import */ var _lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_lib/requiredArgs/index.js */ "./node_modules/date-fns/esm/_lib/requiredArgs/index.js");
+
+
+
+
+/**
+ * @name setMonth
+ * @category Month Helpers
+ * @summary Set the month to the given date.
+ *
+ * @description
+ * Set the month to the given date.
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * @param {Date|Number} date - the date to be changed
+ * @param {Number} month - the month of the new date
+ * @returns {Date} the new date with the month set
+ * @throws {TypeError} 2 arguments required
+ *
+ * @example
+ * // Set February to 1 September 2014:
+ * const result = setMonth(new Date(2014, 8, 1), 1)
+ * //=> Sat Feb 01 2014 00:00:00
+ */
+
+function setMonth(dirtyDate, dirtyMonth) {
+  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])(2, arguments);
+  var date = (0,_toDate_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])(dirtyDate);
+  var month = (0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_2__["default"])(dirtyMonth);
+  var year = date.getFullYear();
+  var day = date.getDate();
+  var dateWithDesiredMonth = new Date(0);
+  dateWithDesiredMonth.setFullYear(year, month, 15);
+  dateWithDesiredMonth.setHours(0, 0, 0, 0);
+  var daysInMonth = (0,_getDaysInMonth_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])(dateWithDesiredMonth); // Set the last day of the new month
+  // if the original date was the last day of the longer month
+
+  date.setMonth(month, Math.min(day, daysInMonth));
+  return date;
+}
 
 /***/ }),
 
@@ -43451,6 +44573,45 @@ component.options.__file = "resources/js/components/pageParts/Calendar.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/pageParts/DayEventList.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/pageParts/DayEventList.vue ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _DayEventList_vue_vue_type_template_id_0df3f505___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DayEventList.vue?vue&type=template&id=0df3f505& */ "./resources/js/components/pageParts/DayEventList.vue?vue&type=template&id=0df3f505&");
+/* harmony import */ var _DayEventList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DayEventList.vue?vue&type=script&lang=js& */ "./resources/js/components/pageParts/DayEventList.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DayEventList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DayEventList_vue_vue_type_template_id_0df3f505___WEBPACK_IMPORTED_MODULE_0__.render,
+  _DayEventList_vue_vue_type_template_id_0df3f505___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/pageParts/DayEventList.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/pageParts/DialogSection.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/pageParts/DialogSection.vue ***!
@@ -43707,6 +44868,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/pageParts/DayEventList.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/pageParts/DayEventList.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DayEventList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DayEventList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pageParts/DayEventList.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DayEventList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/pageParts/DialogSection.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************!*\
   !*** ./resources/js/components/pageParts/DialogSection.vue?vue&type=script&lang=js& ***!
@@ -43939,6 +45116,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/pageParts/DayEventList.vue?vue&type=template&id=0df3f505&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/pageParts/DayEventList.vue?vue&type=template&id=0df3f505& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DayEventList_vue_vue_type_template_id_0df3f505___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DayEventList_vue_vue_type_template_id_0df3f505___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DayEventList_vue_vue_type_template_id_0df3f505___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DayEventList.vue?vue&type=template&id=0df3f505& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pageParts/DayEventList.vue?vue&type=template&id=0df3f505&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/pageParts/DialogSection.vue?vue&type=template&id=1d36f738&":
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/pageParts/DialogSection.vue?vue&type=template&id=1d36f738& ***!
@@ -44123,6 +45317,11 @@ var render = function() {
                       color: calendar.color,
                       label: calendar.name,
                       "hide-details": "true"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.toggleVisibility(calendar)
+                      }
                     },
                     model: {
                       value: calendar.visibility,
@@ -44317,7 +45516,7 @@ var render = function() {
                   _vm._s(_vm.event.startDate) +
                   " " +
                   _vm._s(_vm.event.timed ? _vm.event.startTime : "") +
-                  " ~ " +
+                  " ~\n            " +
                   _vm._s(_vm.event.endDate) +
                   " " +
                   _vm._s(_vm.event.timed ? _vm.event.endTime : "") +
@@ -44959,7 +46158,7 @@ var render = function() {
         "v-sheet",
         {
           staticClass: "d-flex align-center",
-          attrs: { height: "6vh", color: "grey lighten-3" }
+          attrs: { height: "6vh", color: "lighten-3" }
         },
         [
           _c(
@@ -45000,7 +46199,42 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("v-toolbar-title", [_vm._v(_vm._s(_vm.title))])
+          _c("v-toolbar-title", [_vm._v(_vm._s(_vm.title))]),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c(
+            "v-sheet",
+            { staticClass: "d-flex" },
+            [
+              _c("v-select", {
+                attrs: {
+                  dense: "",
+                  items: _vm.items,
+                  "item-text": "text",
+                  "item-value": "value",
+                  label: "Select",
+                  "persistent-hint": "",
+                  "return-object": "",
+                  "single-line": "",
+                  "prepend-icon": "mdi-calendar"
+                },
+                on: {
+                  change: function($event) {
+                    return _vm.changeView(_vm.viewSelect.value, $event)
+                  }
+                },
+                model: {
+                  value: _vm.viewSelect,
+                  callback: function($$v) {
+                    _vm.viewSelect = $$v
+                  },
+                  expression: "viewSelect"
+                }
+              })
+            ],
+            1
+          )
         ],
         1
       ),
@@ -45018,6 +46252,7 @@ var render = function() {
               _c("v-calendar", {
                 ref: "calendar",
                 attrs: {
+                  type: _vm.type || "month",
                   events: _vm.events,
                   locale: "ja-jp",
                   "day-format": function(timestamp) {
@@ -45030,7 +46265,9 @@ var render = function() {
                 on: {
                   change: _vm.fetchEvents,
                   "click:event": _vm.showEvent,
-                  "click:day": _vm.initEvent
+                  "click:day": _vm.initEvent,
+                  "click:date": _vm.showDayEvents,
+                  "click:more": _vm.showDayEvents
                 },
                 model: {
                   value: _vm.value,
@@ -45063,6 +46300,110 @@ var render = function() {
             : _vm._e()
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { value: _vm.clickedDate !== null, width: "600" },
+          on: { "click:outside": _vm.closeDialog }
+        },
+        [_c("DayEventList")],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pageParts/DayEventList.vue?vue&type=template&id=0df3f505&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/pageParts/DayEventList.vue?vue&type=template&id=0df3f505& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-card",
+    { staticClass: "pb-8" },
+    [
+      _c(
+        "v-card-actions",
+        { staticClass: "d-flex justify-end" },
+        [
+          _c(
+            "v-btn",
+            { attrs: { icon: "" }, on: { click: _vm.closeDialog } },
+            [_c("v-icon", [_vm._v("mdi-close")])],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("v-card-title", { staticClass: "d-flex justify-center" }, [
+        _vm._v(
+          "\n        " + _vm._s(_vm.formatDateToJa(_vm.clickedDate)) + "\n    "
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "v-card-text",
+        _vm._l(_vm.dayEvents, function(event) {
+          return _c(
+            "div",
+            { key: event.id },
+            [
+              _c(
+                "v-timeline",
+                [
+                  _c(
+                    "v-timeline-item",
+                    { attrs: { color: event.color, small: "" } },
+                    [
+                      _c(
+                        "v-row",
+                        { attrs: { justify: "space-between" } },
+                        [
+                          _c("v-col", {
+                            attrs: { cols: "7" },
+                            domProps: { textContent: _vm._s(event.name) }
+                          }),
+                          _vm._v(" "),
+                          _c("v-col", {
+                            staticClass: "text-right",
+                            attrs: { cols: "5" },
+                            domProps: { textContent: _vm._s(event.startTime) }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        }),
+        0
       )
     ],
     1

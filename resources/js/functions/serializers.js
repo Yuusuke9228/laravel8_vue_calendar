@@ -1,11 +1,17 @@
-import { format } from 'date-fns';
+import { format, set } from 'date-fns'; // setを追加
 
 export const serializeEvent = event => {
     if (event === null) {
         return null;
     }
-    const start = new Date(event.start);
-    const end = new Date(event.end);
+    // 編集
+    let start = new Date(event.start);
+    let end = new Date(event.end);
+    if (!event.timed) {
+        start = set(start, { hours: 0, minutes: 0, seconds: 0 });
+        end = set(end, { hours: 23, minutes: 59, seconds: 59 });
+    }
+    // ここまで
     return {
         ...event,
         start,

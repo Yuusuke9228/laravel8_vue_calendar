@@ -2,7 +2,10 @@
     <v-card class="py-12">
         <v-card-text>
             <DialogSection icon="mdi-square" :color="color">
-                <v-text-field v-model="name" label="カレンダー名"></v-text-field>
+                <v-text-field
+                    v-model="name"
+                    label="カレンダー名"
+                ></v-text-field>
             </DialogSection>
             <DialogSection icon="mdi-palette">
                 <ColorForm v-model="color" />
@@ -16,31 +19,35 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import DialogSection from '../pageParts/DialogSection';
-import ColorForm from '../form/ColorForm';
+import { mapActions, mapGetters } from "vuex";
+import DialogSection from "../pageParts/DialogSection";
+import ColorForm from "../form/ColorForm";
 
 export default {
-    name: 'CalendarFormDialog',
+    name: "CalendarFormDialog",
     components: { DialogSection, ColorForm },
     data: () => ({
-        name: '',
+        name: "",
         color: null,
     }),
     computed: {
-        ...mapGetters('calendars', ['calendar']),
+        ...mapGetters("calendars", ["calendar"]),
     },
     created() {
         this.name = this.calendar.name;
         this.color = this.calendar.color;
     },
     methods: {
-        ...mapActions('calendars', ['createCalendar', 'updateCalendar', 'setCalendar']), //'updateCalendar'を追加
+        ...mapActions("calendars", [
+            "createCalendar",
+            "updateCalendar",
+            "setCalendar",
+        ]), //'updateCalendar'を追加
         close() {
             this.setCalendar(null);
         },
         submit() {
-            const user_id = document.getElementById('user_id').value;
+            const user_id = document.getElementById("user_id").value;
 
             const params = {
                 ...this.calendar,

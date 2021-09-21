@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import Calendar from '../pageParts/Calendar';
+import Calendar from "../pageParts/Calendar";
 
 export default {
     components: {
         Calendar,
     },
     mounted() {
-        console.log('HomeComponent mounted.');
+        console.log("HomeComponent mounted.");
     },
 };
 </script>

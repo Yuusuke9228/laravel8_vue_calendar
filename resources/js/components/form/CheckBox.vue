@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: 'CheckBox',
-    props: ['value', 'label'],
-}
+    name: "CheckBox",
+    props: ["value", "label"],
+};
 </script>

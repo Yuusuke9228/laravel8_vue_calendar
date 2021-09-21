@@ -18,54 +18,70 @@
                         v-model="calendar.visibility"
                         :color="calendar.color"
                         :label="calendar.name"
+                        @click="toggleVisibility(calendar)"
                         class="pb-2"
                         hide-details="true"
                     ></v-checkbox>
                 </v-list-item-content>
                 <v-list-item-action class="ma-0">
-                    <v-menu transition="scale-transition" offset-y min-width="100px">
+                    <v-menu
+                        transition="scale-transition"
+                        offset-y
+                        min-width="100px"
+                    >
                         <template v-slot:activator="{ on }">
                             <v-btn icon v-on="on">
                                 <v-icon size="12px">mdi-dots-vertical</v-icon>
                             </v-btn>
                         </template>
                         <v-list>
-                            <!--追加-->
-                            <v-list-item @click="editCalendar(calendar)">編集</v-list-item>
-                            <v-list-item @click="delCalendar(calendar)">削除</v-list-item>
-                            <!--ここまで-->
+                            <v-list-item @click="editCalendar(calendar)"
+                                >編集</v-list-item
+                            >
+                            <v-list-item @click="delCalendar(calendar)"
+                                >削除</v-list-item
+                            >
                         </v-list>
                     </v-menu>
                 </v-list-item-action>
             </v-list-item>
         </v-list-item-group>
-        <v-dialog :value="calendar !== null" @click:outside="closeDialog" width="600">
+        <v-dialog
+            :value="calendar !== null"
+            @click:outside="closeDialog"
+            width="600"
+        >
             <CalendarFormDialog v-if="calendar !== null" />
         </v-dialog>
     </v-list>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import CalendarFormDialog from './CalendarFormDialog'; // 追加
+import { mapActions, mapGetters } from "vuex";
+import CalendarFormDialog from "./CalendarFormDialog";
 
 export default {
-    name: 'CalendarList',
+    name: "CalendarList",
     data: () => ({
         selectedItem: null,
     }),
     components: { CalendarFormDialog },
     computed: {
-        ...mapGetters('calendars', ['calendars', 'calendar']), // 'calendar'追加
+        ...mapGetters("calendars", ["calendars", "calendar"]),
     },
     created() {
         this.fetchCalendars();
     },
     methods: {
-        ...mapActions('calendars', ['fetchCalendars', 'deleteCalendar', 'setCalendar']), // 'deleteCalendar'追加
+        ...mapActions("calendars", [
+            "fetchCalendars",
+            "updateCalendar",
+            "deleteCalendar",
+            "setCalendar",
+        ]), // 'updateCalendar'追加
         initCalendar() {
             this.setCalendar({
-                name: '',
+                name: "",
                 visibility: true,
             });
         },
@@ -75,14 +91,17 @@ export default {
         editCalendar(calendar) {
             this.setCalendar(calendar);
         },
-        // 追加
         delCalendar(calendar) {
-            const res = confirm(`「${calendar.name}」を削除してもよろしいですか？`);
-            if(res) {
+            const res = confirm(
+                `「${calendar.name}」を削除してもよろしいですか？`
+            );
+            if (res) {
                 this.deleteCalendar(calendar.id);
             }
         },
-        // ここまで
+        toggleVisibility(calendar) {
+            this.updateCalendar(calendar);
+        },
     },
 };
 </script>

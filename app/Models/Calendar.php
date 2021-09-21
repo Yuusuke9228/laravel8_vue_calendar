@@ -11,7 +11,17 @@ class Calendar extends Model
 
     protected $table = 'calendars';
 
-    public function events()
+    protected $fillable = [
+        'name',
+        'color',
+        'visibility',
+        'user_id',
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function events(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Event::class);
     }

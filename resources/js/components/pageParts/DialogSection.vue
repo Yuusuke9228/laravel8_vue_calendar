@@ -11,7 +11,7 @@
 
 <script>
 export default {
-    name: 'DialogSection',
-    props: ['icon', 'color'],
+    name: "DialogSection",
+    props: ["icon", "color"],
 };
 </script>
