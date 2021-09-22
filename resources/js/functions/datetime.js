@@ -1,5 +1,5 @@
-import {format, isWithinInterval} from 'date-fns'; // 追加
-import { ja } from 'date-fns/locale'; // 追加
+import { format, addHours, isWithinInterval } from 'date-fns'; // addHourを追加
+import { ja } from 'date-fns/locale';
 
 /**
  * 時刻選択用のオブジェクトを生成
@@ -11,8 +11,6 @@ export const getTimeIntervalList = () => {
     const minutes = ['00', '15', '30', '45'];
     return hours.map(hour => minutes.map(minute => hour + ':' + minute)).flat();
 }
-
-// 追加
 
 /**
  * startDateとendDateの間にdateが含まれるかどうか
@@ -48,4 +46,44 @@ export const compareDates = (a, b) => {
     return 0;
 }
 
+// 追加
+
+/***
+ * カレンダーでクリックされた日時から、デフォルトの日時を生成
+ *
+ * @param date
+ * @returns {[string, string]}
+ */
+export const getDefaultStartAndEnd = date => {
+    const currentTime = format(new Date(), 'HH:mm:ss');
+    const dateTime = new Date(`${date} ${currentTime}`);
+    const start = format(addHours(dateTime, 0), 'yyyy/MM/dd HH:00:00');
+    const end = format(addHours(dateTime, 1), 'yyyy/MM/dd HH:00:00');
+
+    return [start, end];
+}
+
+/**
+ * 終了日時が開始日時の後になっているか
+ *
+ * @param startDate
+ * @param startTime
+ * @param endDate
+ * @param endTime
+ * @param allDay
+ * @returns {boolean}
+ */
+export const isGreaterEndThanStart = (startDate, startTime, endDate, endTime, allDay) => {
+    if (allDay) { // 終日の場合
+        const start = new Date(startDate).getTime();
+        const end = new Date(endDate).getTime();
+
+        return end >= start;
+    } else {
+        const start = new Date(`${startDate} ${startTime}`).getTime();
+        const end = new Date(`${endDate} ${endTime}`).getTime();
+
+        return end > start;
+    }
+}
 // ここまで

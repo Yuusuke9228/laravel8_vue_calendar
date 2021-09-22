@@ -12,7 +12,7 @@ export default {
         Calendar,
     },
     mounted() {
-        console.log("HomeComponent mounted.");
+        console.log("Component mounted.");
     },
 };
 </script>

@@ -31,8 +31,10 @@
                 <CalendarList />
             </v-sheet>
             <v-sheet class="flex">
+                <!--:now=now追加-->
                 <v-calendar
                     ref="calendar"
+                    :now="now"
                     :type="type || 'month'"
                     v-model="value"
                     :events="events"
@@ -75,6 +77,7 @@
 <script>
 import { format } from "date-fns";
 import { mapActions, mapGetters } from "vuex";
+import { getDefaultStartAndEnd } from "../../functions/datetime"; // 追加
 import EventDetailDialog from "../events/EventDetailDialog";
 import EventFormDialog from "../events/EventFormDialog";
 import CalendarList from "../calendars/CalendarList";
@@ -84,6 +87,7 @@ export default {
     name: "Calendar",
     data: () => ({
         value: format(new Date(), "yyyy/MM/dd"), // 初期値を今日の月にする
+        now: format(new Date(), "yyyy-MM-dd HH:mm:ss"), // カレンダー上で当日を見やすくする為に追加
         user_id: document.getElementById("user_id").value,
         type: "month",
         viewSelect: { value: "month", text: "月表示" },
@@ -111,8 +115,10 @@ export default {
                 case "month":
                     return format(new Date(this.value), "yyyy年 M月");
                 case "week":
+                    this.$refs.calendar.scrollToTime('07:00');
                     return this.formedDateOfThisWeek(new Date(this.value));
                 case "day":
+                    this.$refs.calendar.scrollToTime('07:00');
                     return format(new Date(this.value), "yyyy年 M月 d日");
             }
         },
@@ -141,8 +147,11 @@ export default {
                 return;
             }
             date = date.replace(/-/g, "/");
-            const start = format(new Date(date), "yyyy/MM/dd 00:00:00");
-            const end = format(new Date(date), "yyyy/MM/dd 01:00:00");
+            // ここを変更
+            // const start = format(new Date(date), "yyyy/MM/dd 00:00:00");
+            // const end = format(new Date(date), "yyyy/MM/dd 01:00:00");
+            const [start, end] = getDefaultStartAndEnd(date);
+            // ここまで
             this.setEvent({ name: "", start, end, timed: true });
             this.setEditMode(true);
         },

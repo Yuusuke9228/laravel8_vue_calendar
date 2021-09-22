@@ -1,4 +1,5 @@
 <template>
+
     <v-card class="py-12">
         <v-card-text>
             <DialogSection icon="mdi-square" :color="color">
@@ -13,23 +14,31 @@
         </v-card-text>
         <v-card-actions class="d-flex justify-end">
             <v-btn @click="close">キャンセル</v-btn>
-            <v-btn @click="submit">保存</v-btn>
+            <v-btn @click="submit" :disabled="$v.$invalid">保存</v-btn> <!--:disabled="$v.$invalid"を追加-->
         </v-card-actions>
     </v-card>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { validationMixin } from 'vuelidate'; // 追加
+import { required } from 'vuelidate/lib/validators'; // 追加
 import DialogSection from "../pageParts/DialogSection";
 import ColorForm from "../form/ColorForm";
 
 export default {
     name: "CalendarFormDialog",
+    mixins: [validationMixin], // 追加
     components: { DialogSection, ColorForm },
     data: () => ({
         name: "",
         color: null,
     }),
+    // 追加
+    validations: {
+        name: {required },
+    },
+    // ここまで
     computed: {
         ...mapGetters("calendars", ["calendar"]),
     },
@@ -42,11 +51,16 @@ export default {
             "createCalendar",
             "updateCalendar",
             "setCalendar",
-        ]), //'updateCalendar'を追加
+        ]),
         close() {
             this.setCalendar(null);
         },
         submit() {
+            // 追加
+            if (this.$v.$invalid) {
+                return;
+            }
+            // ここまで
             const user_id = document.getElementById("user_id").value;
 
             const params = {
@@ -55,13 +69,12 @@ export default {
                 color: this.color,
                 user_id: user_id,
             };
-            // 追加
+
             if (params.id) {
                 this.updateCalendar(params);
             } else {
                 this.createCalendar(params);
             }
-            // ここまで
             this.close();
         },
     },
