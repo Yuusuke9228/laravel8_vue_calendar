@@ -6,6 +6,7 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\EventRequest;
 
 class EventController extends Controller
 {
@@ -33,10 +34,10 @@ class EventController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param EventRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(Request $request): \Illuminate\Http\JsonResponse
+    public function create(EventRequest $request): \Illuminate\Http\JsonResponse
     {
         $event = new Event();
 
@@ -44,10 +45,10 @@ class EventController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param EventRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(Request $request): \Illuminate\Http\JsonResponse
+    public function save(EventRequest $request): \Illuminate\Http\JsonResponse
     {
         $event = Event::find($request->id);
 
@@ -70,11 +71,11 @@ class EventController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param EventRequest $request
      * @param $event
      * @return \Illuminate\Http\JsonResponse
      */
-    public function _saveEvent(Request $request, $event): \Illuminate\Http\JsonResponse
+    public function _saveEvent(EventRequest $request, $event): \Illuminate\Http\JsonResponse
     {
         $event->name = $request->input('name');
         $event->start = new Carbon($request->input('start'));

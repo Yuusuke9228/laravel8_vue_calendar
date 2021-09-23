@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CalendarRequest;
 use App\Models\Calendar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +33,7 @@ class CalendarController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(Request $request): \Illuminate\Http\JsonResponse
+    public function create(CalendarRequest $request): \Illuminate\Http\JsonResponse
     {
         $calendar = new Calendar();
 
@@ -43,7 +44,7 @@ class CalendarController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(Request $request): \Illuminate\Http\JsonResponse
+    public function save(CalendarRequest $request): \Illuminate\Http\JsonResponse
     {
         $calendar = Calendar::find($request->id);
 
@@ -74,7 +75,7 @@ class CalendarController extends Controller
      * @param $calendar
      * @return \Illuminate\Http\JsonResponse
      */
-    private function _saveCalendar(Request $request, $calendar): \Illuminate\Http\JsonResponse
+    private function _saveCalendar(CalendarRequest $request, $calendar): \Illuminate\Http\JsonResponse
     {
         $calendar->name = $request->input('name');
         $calendar->color = $request->input('color');

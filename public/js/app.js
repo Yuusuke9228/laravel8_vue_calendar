@@ -2544,6 +2544,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.setEvent(null);
     },
     submit: function submit() {
+      // 追加
+      if (this.isInvalid) {
+        return;
+      } // ここまで
+
+
       var params = _objectSpread(_objectSpread({}, this.event), {}, {
         name: this.name,
         start: "".concat(this.startDate, " ").concat(this.startTime || ""),

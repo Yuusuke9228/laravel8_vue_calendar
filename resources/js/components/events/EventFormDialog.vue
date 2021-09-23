@@ -129,6 +129,11 @@ export default {
             this.setEvent(null);
         },
         submit() {
+            // 追加
+            if (this.isInvalid) {
+                return;
+            }
+            // ここまで
             const params = {
                 ...this.event,
                 name: this.name,
